@@ -1,3 +1,5 @@
+import os.path
+
 import arxiv
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -151,6 +153,7 @@ def save_edges_to_csv(G, author, max_depth):
 
     filename = "csv_database/" + "collaboration_network_" + author.replace(" ", "") + "_depth_" + str(
         max_depth) + ".csv"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     with open(filename, mode='w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
