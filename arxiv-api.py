@@ -1,4 +1,5 @@
-from urllib.parse import quote
+from arxiv import Result
+from typing import List
 from unidecode import unidecode
 
 import arxiv
@@ -13,7 +14,7 @@ import arxiv
 """
 
 
-def search_arxiv_publications(author_name, max_results=50, transliterate_name=True):
+def search_arxiv_publications(author_name: str, max_results: int = 50, transliterate_name: bool = True) -> List[Result]:
     """
     Search for publications on ArXiv using the same parameters as the web interface.
 
@@ -43,7 +44,7 @@ def search_arxiv_publications(author_name, max_results=50, transliterate_name=Tr
     return results
 
 
-def display_publication_info(results):
+def display_publication_info(results: List[Result]) -> None:
     """
     Display the title, year, field, and authors for each publication.
 
