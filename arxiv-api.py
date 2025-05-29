@@ -1,3 +1,6 @@
+from urllib.parse import quote
+from unidecode import unidecode
+
 import arxiv
 
 """
@@ -10,17 +13,21 @@ import arxiv
 """
 
 
-def search_arxiv_publications(author_name, max_results=50):
+def search_arxiv_publications(author_name, max_results=50, transliterate_name=True):
     """
     Search for publications on ArXiv using the same parameters as the web interface.
 
     Args:
         author_name (str): The name of the author to search for
         max_results (int): Maximum number of results to return
+        transliterate_name (bool): If True, transliterate names to replace special characters
 
     Returns:
         List of publications matching the search criteria
     """
+    if transliterate_name:
+        author_name = unidecode(author_name)
+
     search_query = f"au:\"{author_name}\""
     # search_query = 'au:name+AND+au:surname'
 
